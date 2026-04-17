@@ -1,3 +1,3 @@
 <div class="credits">
-    Designed & Developed by <a href="#">Aakansha Pandey</a>
+    Designed & Developed by <a href="#">SATYAM AWASTHI</a>
 </div>

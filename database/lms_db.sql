@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 30, 2024 at 04:43 PM
+-- Host: localhost
+-- Generation Time: Apr 18, 2026 at 01:13 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -324,16 +324,16 @@ CREATE TABLE `user_data` (
   `designation` varchar(255) NOT NULL DEFAULT 'designation',
   `about_text` text NOT NULL DEFAULT 'Write something about your self.',
   `profile_picture` text NOT NULL,
-  `forgot_pwd_otp` varchar(255) NOT NULL,
+  `forgot_pwd_otp` varchar(255) DEFAULT NULL,
   `phone` varchar(255) NOT NULL DEFAULT 'Enter your phone number',
   `tfa` varchar(255) NOT NULL DEFAULT 'No',
   `email` varchar(255) NOT NULL,
-  `fb` text NOT NULL,
-  `insta` text NOT NULL,
-  `twitter` text NOT NULL,
-  `linkedin` text NOT NULL,
-  `github` text NOT NULL,
-  `youtube` text NOT NULL,
+  `fb` text DEFAULT NULL,
+  `insta` text DEFAULT NULL,
+  `twitter` text DEFAULT NULL,
+  `linkedin` text DEFAULT NULL,
+  `github` text DEFAULT NULL,
+  `youtube` text DEFAULT NULL,
   `date` varchar(255) NOT NULL,
   `active_record` varchar(11) NOT NULL DEFAULT 'Yes'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -356,7 +356,9 @@ INSERT INTO `user_data` (`user_id`, `full_name`, `username`, `password`, `role`,
 (18, 'Palak', 'Palak', '202cb962ac59075b964b07152d234b70', '0', '', '', '27_Mar_2024_06_41_23am_63f5ed803fa21e1e319b9f6c96944df0.jpg', 'A684EC', '', 'No', 'email_deactive', '', '', '', '', '', '', '27-03-2024', 'No'),
 (19, 'brave', 'Brave', '628a646cd6eef60c6f4de07079bf2462', '1', '', '', '27_Mar_2024_07_20_18am_homeMini.png.webp', '', '', 'No', 'brave@gmail.com', '', '', '', '', '', '', '27-03-2024', 'Yes'),
 (20, 'office', 'office', '202cb962ac59075b964b07152d234b70', '9', 'designation', 'Write something about your self.', 'default_user_profile.png', 'E2C420', 'Enter your phone number', 'No', 'officepiyushraikwar289@gmail.com', '', '', '', '', '', '', '30-03-2024', 'Yes'),
-(21, 'end user', 'enduser', 'a76f6771bf40734cd6bd695ca9d10e32', '9', '', '', '30_Mar_2024_07_27_34am_63f5ed803fa21e1e319b9f6c96944df0.webp.webp', '', '', 'No', 'officepiyush@gmail.com', '', '', '', '', '', '', '30-03-2024', 'Yes');
+(21, 'end user', 'enduser', 'a76f6771bf40734cd6bd695ca9d10e32', '9', '', '', '30_Mar_2024_07_27_34am_63f5ed803fa21e1e319b9f6c96944df0.webp.webp', '', '', 'No', 'officepiyush@gmail.com', '', '', '', '', '', '', '30-03-2024', 'Yes'),
+(22, 's', 'sadmin@gmail.com', '0284bb853a649751efbca489e6132b12', '9', 'designation', 'Write something about your self.', 'default_user_profile.png', 'C20AD4', 'Enter your phone number', 'No', 's@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '18-04-2026', 'Yes'),
+(23, 'satyam', 'satyam', '202cb962ac59075b964b07152d234b70', '0', 'designation', 'Write something about your self.', '18_Apr_2026_01_09_23pm_belleza_favicon (1).png', NULL, 'Enter your phone number', 'No', 'satyam@gmail.com', '', '', '', '', '', '', '2026-04-18', 'Yes');
 
 --
 -- Indexes for dumped tables
@@ -472,7 +474,7 @@ ALTER TABLE `team_member`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

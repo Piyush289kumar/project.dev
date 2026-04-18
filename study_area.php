@@ -198,7 +198,7 @@
     </div> -->
     <!-- Import Copyright File -->
     <div class="credits">
-      Designed & Developed by <a href="https://github.com/Piyush289kumar/">Piyush Kumar Raikwar</a>
+      Designed & Developed by <a href="https://github.com/Piyush289kumar/">SATYAM AWASTHI</a>
     </div>
   </footer><!-- End Footer -->
   <a class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

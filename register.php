@@ -1,43 +1,46 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
 <!-- Import Files -->
 <?php include('admin_header.php');
 include('private_files/system_configure_setting.php') ?>
 
 <!-- Register User Back-End Code -->
-<?php
+ <?php
 if (isset($_POST['save'])) {
+
   $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $username = mysqli_real_escape_string($conn, $_POST['username']);
-  $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+  $password = md5($_POST['password']); // keep md5 for now (since login also uses md5)
+
   $role = '9';
-  $date = Date('d-m-Y');
+  $date = date('Y-m-d');
   $defult_user_profile = 'default_user_profile.png';
 
-  $sql_user_cheack = "SELECT username FROM user_data WHERE email = '{$email}'";
-  $result_user_cheack = mysqli_query($conn, $sql_user_cheack) or die("Query Die ( sql_user_cheack )!!");
+  // Check email exists
+  $check = mysqli_query($conn, "SELECT * FROM user_data WHERE email='$email'");
 
-  if (mysqli_num_rows($result_user_cheack) > 0) { ?>
-    <script>
-      alert('Email already Exsits !!')
-    </script>
-    <?php
-    echo ("<div class='d-flex justify-content-center' style='margin-bottom:-50px; padding-top:15px;'><p class='btn btn-danger'>Email already Exsits !!</p></div>");
+  if (mysqli_num_rows($check) > 0) {
+    echo "<script>alert('Email already exists');</script>";
   } else {
-    // Create Session For OTP Auth
-    session_start();
-    $_SESSION['user_otp_email'] = $email;
-    // OTP Generated 
-    $otp = strtoupper(substr(md5(rand(11, 99)), 0, 6));
-    // OTP Session for Send Email
-    $_SESSION['otp_send_session'] = $otp;
-    $sql_insert_user = "INSERT INTO user_data (full_name, username, password, role, profile_picture, forgot_pwd_otp, email, date) values('{$full_name}','{$username}','{$password}', '{$role}','{$defult_user_profile}','{$otp}','{$email}','{$date}')";
-    if (mysqli_query($conn, $sql_insert_user)) {
-    ?>
-      <script>
-        alert('Email was send successfull to your registered email.')
-      </script>
-<?php
-      echo "<script>window.location.href='$hostname/admin/email_sender_files/registration_otp_sender.php'</script>";
+
+    $sql = "INSERT INTO user_data 
+    (full_name, username, password, role, profile_picture, email, date)
+    VALUES 
+    ('$full_name','$username','$password','$role','$defult_user_profile','$email','$date')";
+
+    if (mysqli_query($conn, $sql)) {
+
+      echo "<script>
+        alert('Registered Successfully');
+        window.location.href='login.php';
+      </script>";
+
+    } else {
+      echo "Error: " . mysqli_error($conn);
     }
   }
 }
